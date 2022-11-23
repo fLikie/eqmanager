@@ -5,6 +5,6 @@ import org.springframework.data.relational.core.mapping.Table
 
 @Table("USER")
 data class User(
-    @Id val id: String?,
+    @Id val id: Int?,
     val phone: String,
 )

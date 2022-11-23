@@ -1,21 +1,41 @@
 package com.example.eqmanager
 
+import com.example.eqmanager.domain.UserRepository
+import com.example.eqmanager.domain.data.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.ResponseBody
-import org.springframework.web.bind.annotation.ResponseStatus
+import org.springframework.web.bind.annotation.*
 
 @Controller
-class LoginController {
+class LoginController(
+    val userService: UserService
+) {
 
     @PostMapping("/login")
-    fun login(): ResponseEntity<String> {
-        return ResponseEntity.ok("login")
+    fun login(@RequestBody phone: String): ResponseEntity.HeadersBuilder<*> {
+        return if (userService.isUserExistsByPhone(phone)) {
+            ResponseEntity.ok()
+        } else {
+            ResponseEntity.notFound()
+        }
     }
 
-    @PostMapping("/signup")
-    fun signUp(): Result<String> {
-        return Result.success("signup")
+    @PostMapping("/register")
+    fun register(phone: String): ResponseEntity.BodyBuilder {
+        val isUserCreationSuccess = userService.createUser(phone = phone)
+        return if (isUserCreationSuccess) {
+            ResponseEntity.ok()
+        } else {
+            ResponseEntity.status(503)
+        }
+    }
+
+    @PostMapping("/authcode")
+    fun checkAuthCode(@RequestBody code: String): ResponseEntity.BodyBuilder {
+        return if (code == "2077") {
+            ResponseEntity.ok()
+        } else {
+            ResponseEntity.status(400)
+        }
     }
 }
