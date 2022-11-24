@@ -18,7 +18,7 @@ class LoginController(
 ) {
 
     @PostMapping("/login")
-    fun login(@RequestBody phone: String): ResponseEntity<Response> {
+    fun login(phone: String): ResponseEntity<Response> {
         return if (userService.isUserExistsByPhone(phone)) {
             ResponseEntity.ok(Response("exists"))
         } else {
