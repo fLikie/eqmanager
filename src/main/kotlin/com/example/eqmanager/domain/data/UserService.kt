@@ -27,12 +27,12 @@ class UserService(
         return false
     }
 
-    fun createUser(phone: String): Boolean {
+    fun createUser(phone: String): String {
         try {
             userRepository.save(User(phone = phone))
         } catch (e: Exception) {
-            return false
+            return e.message.toString()
         }
-        return true
+        return "ok"
     }
 }

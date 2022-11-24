@@ -29,10 +29,10 @@ class LoginController(
     @PostMapping("/register")
     fun register(phone: String): ResponseEntity<Response> {
         val isUserCreationSuccess = userService.createUser(phone = phone)
-        return if (isUserCreationSuccess) {
+        return if (isUserCreationSuccess == "ok") {
             ResponseEntity.ok(Response("ok"))
         } else {
-            ResponseEntity.ok(Response("something wron"))
+            ResponseEntity.ok(Response(isUserCreationSuccess))
         }
     }
 
