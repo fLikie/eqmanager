@@ -1,5 +1,6 @@
 package com.example.eqmanager
 
+import com.example.eqmanager.domain.data.DataSourceEnv
 import com.example.eqmanager.domain.data.Response
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -19,9 +20,6 @@ import javax.sql.DataSource
 @Controller
 class RestController() {
 
-    @Value("\${spring.datasource.url}")
-    private val dbUrl: String? = null
-
     @Autowired
     private val dataSource: DataSource? = null
 
@@ -33,7 +31,7 @@ class RestController() {
     @RequestMapping("/db")
     fun db(model: MutableMap<String?, Any?>): ResponseEntity<Response> {
         try {
-            dataSource().connection.use { connection ->
+            DataSourceEnv.dataSource().connection.use { connection ->
                 val stmt: Statement = connection.createStatement()
                 stmt.executeUpdate("INSERT INTO eqmanager.user_tbl(phone) VALUES (123)")
                 val rs: ResultSet = stmt.executeQuery("SELECT * FROM eqmanager.user_tbl")
@@ -50,15 +48,6 @@ class RestController() {
         }
     }
 
-    @Throws(SQLException::class)
-    fun dataSource(): DataSource {
-        return if (dbUrl == null || dbUrl.isEmpty()) {
-            HikariDataSource()
-        } else {
-            val config = HikariConfig()
-            config.jdbcUrl = dbUrl
-            HikariDataSource(config)
-        }
-    }
+
 
 }

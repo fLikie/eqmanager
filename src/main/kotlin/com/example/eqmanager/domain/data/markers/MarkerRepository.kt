@@ -1,5 +1,6 @@
 package com.example.eqmanager.domain.data.markers
 
+import com.example.eqmanager.domain.data.DataSourceEnv
 import com.example.eqmanager.domain.data.user.User
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -9,23 +10,9 @@ import javax.sql.DataSource
 
 class MarkerRepository {
 
-    @Value("\${spring.datasource.url}")
-    private val dbUrl: String? = null
-
-    @Throws(SQLException::class)
-    fun dataSource(): DataSource {
-        return if (dbUrl == null || dbUrl.isEmpty()) {
-            HikariDataSource()
-        } else {
-            val config = HikariConfig()
-            config.jdbcUrl = dbUrl
-            HikariDataSource(config)
-        }
-    }
-
     fun getMarkers(): List<Marker> {
         return try {
-            dataSource().connection.use {
+            DataSourceEnv.dataSource().connection.use {
                 val result = it.createStatement()
                     .executeQuery("SELECT * FROM eqmanager.markers")
                 val markers = mutableListOf<Marker>()
@@ -49,7 +36,7 @@ class MarkerRepository {
 
     fun saveMarker(marker: Marker): String {
         return try {
-            dataSource().connection.use {
+            DataSourceEnv.dataSource().connection.use {
                 it.createStatement()
                     .executeUpdate(
                         "INSERT INTO eqmanager.markers(x_coordinate, y_coordinate, comments, plusCount, minusCount, approved) " +
