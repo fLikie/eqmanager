@@ -31,7 +31,7 @@ class UserService(
         try {
             userRepository.save(User(phone = phone))
         } catch (e: Exception) {
-            return e.message.toString()
+            return e.stackTraceToString()
         }
         return "ok"
     }
