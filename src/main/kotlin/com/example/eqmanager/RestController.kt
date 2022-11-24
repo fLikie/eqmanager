@@ -14,9 +14,6 @@ import javax.sql.DataSource
 @Controller
 class RestController() {
 
-    @Autowired
-    private val dataSource: DataSource? = null
-
     @GetMapping("/ping")
     fun ping(): ResponseEntity<String> {
         return ResponseEntity.ok("pong")
@@ -25,12 +22,12 @@ class RestController() {
     @RequestMapping("/db")
     fun db(model: MutableMap<String?, Any?>): ResponseEntity<Response> {
         try {
-            DataSourceEnv.dataSource().connection.use { connection ->
-                val stmt: Statement = connection.createStatement()
-                stmt.executeUpdate("INSERT INTO eqmanager.user_tbl(phone) VALUES (123)")
-                val rs: ResultSet = stmt.executeQuery("SELECT * FROM eqmanager.user_tbl")
+            DataSourceEnv.dataSource?.connection.use { connection ->
+                val stmt: Statement? = connection?.createStatement()
+                stmt?.executeUpdate("INSERT INTO eqmanager.user_tbl(phone) VALUES (123)")
+                val rs: ResultSet? = stmt?.executeQuery("SELECT * FROM eqmanager.user_tbl")
                 val output = ArrayList<String>()
-                while (rs.next()) {
+                while (rs?.next() == true) {
                     output.add("Read from DB: " + rs.getString(2))
                 }
                 model["records"] = output
