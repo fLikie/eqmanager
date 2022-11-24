@@ -21,12 +21,12 @@ class LoginController(
     }
 
     @PostMapping("/register")
-    fun register(phone: String): ResponseEntity.BodyBuilder {
+    fun register(phone: String): ResponseEntity<String> {
         val isUserCreationSuccess = userService.createUser(phone = phone)
         return if (isUserCreationSuccess) {
-            ResponseEntity.ok()
+            ResponseEntity.ok("user created")
         } else {
-            ResponseEntity.status(503)
+            ResponseEntity.ok("something wron")
         }
     }
 
