@@ -1,0 +1,25 @@
+package com.example.eqmanager.domain.data.markers
+
+import org.springframework.stereotype.Service
+
+@Service
+class MarkerService() {
+
+    val markerRepository = MarkerRepository()
+
+    fun getMarkers(): List<Marker> {
+        return try {
+            markerRepository.getMarkers()
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    fun saveMarker(marker: Marker): String {
+        return try {
+            markerRepository.saveMarker(marker)
+        } catch (e: Exception) {
+            e.stackTraceToString()
+        }
+    }
+}
