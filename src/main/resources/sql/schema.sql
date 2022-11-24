@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS MARKERS(
     approved BOOLEAN not null default false
 );
 
-CREATE TABLE IF NOT EXISTS USER(
+CREATE TABLE IF NOT EXISTS USER_TBL (
     id INT PRIMARY KEY AUTO_INCREMENT,
     phone VARCHAR(60) not null default ''
 );
