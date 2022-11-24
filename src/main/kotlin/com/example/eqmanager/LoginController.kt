@@ -12,11 +12,11 @@ class LoginController(
 ) {
 
     @PostMapping("/login")
-    fun login(@RequestBody phone: String): ResponseEntity.HeadersBuilder<*> {
+    fun login(@RequestBody phone: String): ResponseEntity<String> {
         return if (userService.isUserExistsByPhone(phone)) {
-            ResponseEntity.ok()
+            ResponseEntity.ok("exists")
         } else {
-            ResponseEntity.notFound()
+            ResponseEntity.ok("not found")
         }
     }
 
