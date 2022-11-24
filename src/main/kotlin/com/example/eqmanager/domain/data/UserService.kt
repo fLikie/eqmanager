@@ -2,7 +2,6 @@ package com.example.eqmanager.domain.data
 
 import com.example.eqmanager.domain.UserRepository
 import org.springframework.stereotype.Service
-import kotlin.random.Random
 
 @Service
 class UserService(
@@ -22,7 +21,7 @@ class UserService(
 
     fun createUser(phone: String): Boolean {
         try {
-            userRepository.save(User(null, phone = phone))
+            userRepository.save(User(phone = phone))
         } catch (e: Exception) {
             return false
         }

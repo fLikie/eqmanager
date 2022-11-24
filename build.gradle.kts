@@ -22,8 +22,13 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	developmentOnly("org.springframework.boot:spring-boot-devtools:2.7.5")
-	implementation("com.h2database:h2:2.1.214")
 	testImplementation("org.springframework.boot:spring-boot-starter-test:2.7.5")
+
+	runtimeOnly("org.postgresql:postgresql:42.5.0")
+	runtimeOnly("org.webjars:jquery:3.6.1")
+	runtimeOnly("org.webjars:jquery-ui:1.13.2")
+	runtimeOnly ("org.webjars:bootstrap:5.2.2")
+	runtimeOnly ("org.webjars:webjars-locator:0.45")
 }
 
 tasks.withType<KotlinCompile> {
