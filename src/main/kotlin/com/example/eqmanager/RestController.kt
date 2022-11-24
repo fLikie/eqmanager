@@ -50,7 +50,6 @@ class RestController() {
         }
     }
 
-    @Bean
     @Throws(SQLException::class)
     fun dataSource(): DataSource {
         return if (dbUrl == null || dbUrl.isEmpty()) {
