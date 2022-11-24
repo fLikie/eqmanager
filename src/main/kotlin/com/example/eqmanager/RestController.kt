@@ -32,7 +32,7 @@ class RestController() {
     @RequestMapping("/db")
     fun db(model: MutableMap<String?, Any?>): String? {
         try {
-            dataSource?.connection.use { connection ->
+            dataSource().connection.use { connection ->
                 val stmt: Statement? = connection?.createStatement()
                 stmt?.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)")
                 stmt?.executeUpdate("INSERT INTO ticks VALUES (now())")
