@@ -1,4 +1,4 @@
-package com.example.eqmanager.domain.data
+package com.example.eqmanager
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource

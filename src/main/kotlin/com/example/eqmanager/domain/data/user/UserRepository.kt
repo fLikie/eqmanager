@@ -1,11 +1,6 @@
 package com.example.eqmanager.domain.data.user
 
-import com.example.eqmanager.domain.data.DataSourceEnv
-import com.zaxxer.hikari.HikariConfig
-import com.zaxxer.hikari.HikariDataSource
-import org.springframework.beans.factory.annotation.Value
-import java.sql.SQLException
-import javax.sql.DataSource
+import com.example.eqmanager.DataSourceEnv
 
 class UserRepository {
 
