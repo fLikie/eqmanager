@@ -6,6 +6,7 @@ class MarkerRepository {
 
     fun getMarkers(): List<Marker> {
         return try {
+            print("datasource is ${DataSourceEnv.dataSource}")
             DataSourceEnv.dataSource?.connection.use {
                 val result = it?.createStatement()
                     ?.executeQuery("SELECT * FROM eqmanager.markers")
@@ -30,12 +31,14 @@ class MarkerRepository {
 
     fun saveMarker(marker: Marker): String {
         return try {
+            print("datasource is ${DataSourceEnv.dataSource}")
             DataSourceEnv.dataSource?.connection.use {
                 it?.createStatement()
                     ?.executeUpdate(
                         "INSERT INTO eqmanager.markers(x_coordinate, y_coordinate, comments, plusCount, minusCount, approved) " +
                                 "VALUES ('${marker.X_Coordinate}', '${marker.Y_Coordinate}', '${marker.comments}', ${marker.plusCount}, ${marker.minusCount}', ${marker.approved})")
             }
+
             "ok"
         } catch (e: Exception) {
             e.stackTraceToString()
