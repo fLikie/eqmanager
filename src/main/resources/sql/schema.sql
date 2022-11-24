@@ -13,3 +13,5 @@ CREATE TABLE eqmanager.MARKERS (
     approved BOOLEAN not null default false
 );
 
+INSERT INTO eqmanager.markers (x_coordinate, y_coordinate, comments, pluscount, minuscount, approved) values ( '62.03', '129.67', 'uchugey', 0, 0, false)
+

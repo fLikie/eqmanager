@@ -53,7 +53,7 @@ class MarkerRepository {
                 it.createStatement()
                     .executeUpdate(
                         "INSERT INTO eqmanager.markers(X_Coordinate, Y_Coordinate, comments, plusCount, minusCount, approved) " +
-                                "VALUES (${marker.X_Coordinate}, ${marker.Y_Coordinate}, ${marker.comments}, ${marker.plusCount}, ${marker.minusCount}, ${marker.approved})")
+                                "VALUES ('${marker.X_Coordinate}', '${marker.Y_Coordinate}', '${marker.comments}', ${marker.plusCount}, ${marker.minusCount}', ${marker.approved})")
             }
             "ok"
         } catch (e: Exception) {
