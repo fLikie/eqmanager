@@ -5,6 +5,5 @@ import org.springframework.data.relational.core.mapping.Table
 
 @Table("EQMANAGER.USER_TBL")
 data class User(
-    @Id val id: String? = null,
     val phone: String,
 )
