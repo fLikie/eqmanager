@@ -16,12 +16,6 @@ class UserService(
     private val userRepository: UserRepository
 ) {
 
-    @Value("\${spring.datasource.url}")
-    private val dbUrl: String? = null
-
-    @Autowired
-    private val dataSource: DataSource? = null
-
     // Делаем проверку на существование юзера в бд
     fun isUserExistsByPhone(phone: String): Boolean {
         val users = userRepository.findAll()
@@ -40,17 +34,5 @@ class UserService(
             return false
         }
         return true
-    }
-
-    @Bean
-    @Throws(SQLException::class)
-    fun dataSource(): DataSource? {
-        return if (dbUrl == null || dbUrl.isEmpty()) {
-            HikariDataSource()
-        } else {
-            val config = HikariConfig()
-            config.jdbcUrl = dbUrl
-            HikariDataSource(config)
-        }
     }
 }
