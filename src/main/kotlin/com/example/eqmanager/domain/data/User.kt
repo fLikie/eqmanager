@@ -3,8 +3,8 @@ package com.example.eqmanager.domain.data
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 
-@Table("USER")
+@Table("USER_TBL")
 data class User(
-    @Id val id: Int?,
+    @Id val id: String?,
     val phone: String,
 )

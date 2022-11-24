@@ -22,7 +22,7 @@ class UserService(
 
     fun createUser(phone: String): Boolean {
         try {
-            userRepository.save(User(id = Random.nextInt(0, Int.MAX_VALUE), phone = phone))
+            userRepository.save(User(null, phone = phone))
         } catch (e: Exception) {
             return false
         }
