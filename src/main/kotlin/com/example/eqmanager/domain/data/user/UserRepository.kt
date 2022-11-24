@@ -1,12 +1,8 @@
-package com.example.eqmanager.domain
+package com.example.eqmanager.domain.data.user
 
-import com.example.eqmanager.domain.data.User
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.data.repository.CrudRepository
-import org.springframework.stereotype.Repository
 import java.sql.SQLException
 import javax.sql.DataSource
 

@@ -1,4 +1,4 @@
-package com.example.eqmanager.domain.data
+package com.example.eqmanager.domain.data.user
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table

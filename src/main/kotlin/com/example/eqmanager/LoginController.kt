@@ -1,12 +1,7 @@
 package com.example.eqmanager
 
 import com.example.eqmanager.domain.data.Response
-import com.example.eqmanager.domain.data.UserService
-import com.zaxxer.hikari.HikariConfig
-import com.zaxxer.hikari.HikariDataSource
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.context.annotation.Bean
+import com.example.eqmanager.domain.data.user.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
