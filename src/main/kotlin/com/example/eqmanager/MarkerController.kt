@@ -16,7 +16,11 @@ class MarkerController(
 
     @GetMapping("/getmarkers")
     fun getMarkers(): List<Marker> {
-        return markerService.getMarkers()
+        return try {
+            markerService.getMarkers()
+        } catch (e: Exception) {
+            listOf(Marker(comments = e.stackTrace.toString()))
+        }
     }
 
     @PostMapping("/addmarker")

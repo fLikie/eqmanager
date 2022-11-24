@@ -11,7 +11,7 @@ class MarkerService() {
         return try {
             markerRepository.getMarkers()
         } catch (e: Exception) {
-            emptyList()
+            throw e
         }
     }
 
