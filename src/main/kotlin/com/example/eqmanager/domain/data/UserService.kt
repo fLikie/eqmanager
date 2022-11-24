@@ -12,13 +12,13 @@ import javax.sql.DataSource
 
 
 @Service
-class UserService(
-    private val userRepository: UserRepository
-) {
+class UserService() {
+
+    private val userRepository = UserRepository()
 
     // Делаем проверку на существование юзера в бд
     fun isUserExistsByPhone(phone: String): Boolean {
-        val users = userRepository.findAll()
+        val users = userRepository.findAllUsers()
         for (user in users) {
             if (user.phone == phone) {
                 return true
