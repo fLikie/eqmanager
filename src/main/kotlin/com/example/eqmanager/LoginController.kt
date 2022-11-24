@@ -31,11 +31,11 @@ class LoginController(
     }
 
     @PostMapping("/authcode")
-    fun checkAuthCode(@RequestBody code: String): ResponseEntity.BodyBuilder {
+    fun checkAuthCode(code: String): ResponseEntity<String> {
         return if (code == "2077") {
-            ResponseEntity.ok()
+            ResponseEntity.ok("ok")
         } else {
-            ResponseEntity.status(400)
+            ResponseEntity.ok("wrong code")
         }
     }
 }
