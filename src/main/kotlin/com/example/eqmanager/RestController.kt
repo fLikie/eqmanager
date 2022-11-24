@@ -35,15 +35,14 @@ class RestController() {
         try {
             dataSource().connection.use { connection ->
                 val stmt: Statement? = connection?.createStatement()
-                stmt?.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)")
-                stmt?.executeUpdate("INSERT INTO ticks VALUES (now())")
-                val rs: ResultSet? = stmt?.executeQuery("SELECT tick FROM ticks")
+                stmt?.executeUpdate("INSERT INTO eqmanager.user_tbl VALUES (123)")
+                val rs: ResultSet? = stmt?.executeQuery("SELECT * FROM eqmanager.user_tbl")
                 val output = ArrayList<String>()
                 while (rs?.next() == true) {
-                    output.add("Read from DB: " + rs.getTimestamp("tick"))
+                    output.add("Read from DB: " + rs.getString(1))
                 }
                 model["records"] = output
-                return ResponseEntity.ok(Response("ok"))
+                return ResponseEntity.ok(Response(output.toString()))
             }
         } catch (e: Exception) {
             model["message"] = e.message

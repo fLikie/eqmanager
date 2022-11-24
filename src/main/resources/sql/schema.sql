@@ -1,5 +1,3 @@
-CREATE schema eqmanager
-
 CREATE TABLE eqmanager.USER_TBL (
     id serial PRIMARY KEY,
     phone VARCHAR(60) unique not null
