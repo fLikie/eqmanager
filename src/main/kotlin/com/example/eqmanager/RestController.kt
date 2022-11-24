@@ -1,5 +1,6 @@
 package com.example.eqmanager
 
+import com.example.eqmanager.domain.data.Response
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,7 +31,7 @@ class RestController() {
     }
 
     @RequestMapping("/db")
-    fun db(model: MutableMap<String?, Any?>): String? {
+    fun db(model: MutableMap<String?, Any?>): ResponseEntity<Response> {
         try {
             dataSource().connection.use { connection ->
                 val stmt: Statement? = connection?.createStatement()
@@ -42,11 +43,11 @@ class RestController() {
                     output.add("Read from DB: " + rs.getTimestamp("tick"))
                 }
                 model["records"] = output
-                return "db"
+                return ResponseEntity.ok(Response("ok"))
             }
         } catch (e: Exception) {
             model["message"] = e.message
-            return "error"
+            return ResponseEntity.ok(Response(e.stackTraceToString()))
         }
     }
 
