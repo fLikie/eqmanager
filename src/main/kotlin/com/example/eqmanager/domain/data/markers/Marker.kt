@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 data class Marker(
     @JsonProperty("x_Coordinate")
-    val X_Coordinate: String? = "",
+    val X_Coordinate: String?,
     @JsonProperty("y_Coordinate")
-    val Y_Coordinate: String? = "",
+    val Y_Coordinate: String?,
     @JsonProperty("comments")
-    val comments: String? = "",
+    val comments: String?,
     @JsonProperty("plusCount")
     val plusCount: Int? = 0,
     @JsonProperty("minusCount")
