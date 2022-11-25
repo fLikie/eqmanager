@@ -21,10 +21,14 @@ class UserService() {
 
     fun createUser(phone: String): String {
         try {
-            userRepository.save(User(phone = phone))
+            userRepository.save(phone)
         } catch (e: Exception) {
             return e.stackTraceToString()
         }
         return "ok"
+    }
+
+    fun getUsers(): List<User> {
+        return userRepository.findAllUsers()
     }
 }

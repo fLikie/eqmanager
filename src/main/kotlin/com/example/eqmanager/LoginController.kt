@@ -1,6 +1,7 @@
 package com.example.eqmanager
 
 import com.example.eqmanager.domain.data.Response
+import com.example.eqmanager.domain.data.user.User
 import com.example.eqmanager.domain.data.user.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
@@ -38,5 +39,11 @@ class LoginController(
         } else {
             ResponseEntity.ok(Response("wrong code"))
         }
+    }
+
+    @GetMapping("/getusers")
+    fun getUsers(): ResponseEntity<List<User>> {
+        val users = userService.getUsers()
+        return ResponseEntity.ok(users)
     }
 }
