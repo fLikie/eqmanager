@@ -1,5 +1,6 @@
 package com.example.eqmanager
 
+import com.example.eqmanager.domain.data.Code
 import com.example.eqmanager.domain.data.Response
 import com.example.eqmanager.domain.data.user.User
 import com.example.eqmanager.domain.data.user.UserService
@@ -39,8 +40,8 @@ class LoginController(
     }
 
     @PostMapping("/authcode")
-    fun checkAuthCode(code: String): ResponseEntity<Response> {
-        return if (code == "2077") {
+    fun checkAuthCode(code: Code): ResponseEntity<Response> {
+        return if (code.code == "2077") {
             ResponseEntity.ok(Response("ok"))
         } else {
             ResponseEntity.ok(Response("wrong code"))
