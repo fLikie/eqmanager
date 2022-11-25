@@ -40,7 +40,7 @@ class LoginController(
     }
 
     @PostMapping("/authcode")
-    fun checkAuthCode(code: Code): ResponseEntity<Response> {
+    fun checkAuthCode(@RequestBody code: Code): ResponseEntity<Response> {
         return if (code.code == "2077") {
             ResponseEntity.ok(Response("ok"))
         } else {
