@@ -14,11 +14,11 @@ class MarkerController(
 ) {
 
     @GetMapping("/getmarkers")
-    fun getMarkers(): List<Marker> {
+    fun getMarkers(): ResponseEntity<List<Marker>> {
         return try {
-            markerService.getMarkers()
+            ResponseEntity.ok(markerService.getMarkers())
         } catch (e: Exception) {
-            listOf(Marker(comments = e.stackTrace.toString()))
+            ResponseEntity.ok(listOf(Marker(comments = e.stackTrace.toString())))
         }
     }
 
