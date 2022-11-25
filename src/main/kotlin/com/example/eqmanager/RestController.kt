@@ -28,7 +28,7 @@ class RestController() {
         try {
             dataSource?.connection.use { connection ->
                 val stmt: Statement? = connection?.createStatement()
-                stmt?.executeUpdate("INSERT INTO eqmanager.user_tbl(phone) VALUES (123)")
+                stmt?.executeUpdate("INSERT INTO eqmanager.user_tbl(phone) VALUES (321)")
                 val rs: ResultSet? = stmt?.executeQuery("SELECT * FROM eqmanager.user_tbl")
                 val output = ArrayList<String>()
                 while (rs?.next() == true) {
