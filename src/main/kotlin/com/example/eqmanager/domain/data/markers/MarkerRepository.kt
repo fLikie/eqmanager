@@ -1,13 +1,34 @@
 package com.example.eqmanager.domain.data.markers
 
-import com.example.eqmanager.DataSourceEnv
+import com.zaxxer.hikari.HikariConfig
+import com.zaxxer.hikari.HikariDataSource
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
+import java.sql.SQLException
+import javax.sql.DataSource
 
 class MarkerRepository {
 
+    @Value("\${spring.datasource.url}")
+    private val dbUrl: String? = null
+
+    @Autowired
+    val dataSource: DataSource? = null
+
+    @Throws(SQLException::class)
+    fun dataSource() {
+        if (dbUrl == null || dbUrl.isEmpty()) {
+            HikariDataSource()
+        } else {
+            val config = HikariConfig()
+            config.jdbcUrl = dbUrl
+            HikariDataSource(config)
+        }
+    }
+
     fun getMarkers(): List<Marker> {
         return try {
-            print("datasource is ${DataSourceEnv.dataSource}")
-            DataSourceEnv.dataSource?.connection.use {
+            dataSource?.connection.use {
                 val result = it?.createStatement()
                     ?.executeQuery("SELECT * FROM eqmanager.markers")
                 val markers = mutableListOf<Marker>()
@@ -31,8 +52,7 @@ class MarkerRepository {
 
     fun saveMarker(marker: Marker): String {
         return try {
-            print("datasource is ${DataSourceEnv.dataSource}")
-            DataSourceEnv.dataSource?.connection.use {
+            dataSource?.connection.use {
                 it?.createStatement()
                     ?.executeUpdate(
                         "INSERT INTO eqmanager.markers(x_coordinate, y_coordinate, comments, plusCount, minusCount, approved) " +

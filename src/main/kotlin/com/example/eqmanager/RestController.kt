@@ -1,12 +1,16 @@
 package com.example.eqmanager
 
 import com.example.eqmanager.domain.data.Response
+import com.zaxxer.hikari.HikariConfig
+import com.zaxxer.hikari.HikariDataSource
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import java.sql.ResultSet
+import java.sql.SQLException
 import java.sql.Statement
 import javax.sql.DataSource
 
@@ -22,7 +26,7 @@ class RestController() {
     @RequestMapping("/db")
     fun db(model: MutableMap<String?, Any?>): ResponseEntity<Response> {
         try {
-            DataSourceEnv.dataSource?.connection.use { connection ->
+            dataSource?.connection.use { connection ->
                 val stmt: Statement? = connection?.createStatement()
                 stmt?.executeUpdate("INSERT INTO eqmanager.user_tbl(phone) VALUES (123)")
                 val rs: ResultSet? = stmt?.executeQuery("SELECT * FROM eqmanager.user_tbl")
@@ -39,6 +43,21 @@ class RestController() {
         }
     }
 
+    @Value("\${spring.datasource.url}")
+    private val dbUrl: String? = null
 
+    @Autowired
+    val dataSource: DataSource? = null
+
+    @Throws(SQLException::class)
+    fun dataSource() {
+        if (dbUrl == null || dbUrl.isEmpty()) {
+            HikariDataSource()
+        } else {
+            val config = HikariConfig()
+            config.jdbcUrl = dbUrl
+            HikariDataSource(config)
+        }
+    }
 
 }
