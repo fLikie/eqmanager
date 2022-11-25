@@ -28,11 +28,11 @@ class UserRepository {
         }
     }
 
-    fun save(phone: String): String {
+    fun save(user: User): String {
         return try {
             dataSource!!.connection.use {
                 val stmt = it.createStatement()
-                stmt.executeUpdate("INSERT INTO eqmanager.user_tbl(phone) VALUES ($phone)")
+                stmt.executeUpdate("INSERT INTO eqmanager.user_tbl(phone) VALUES (${user.phone})")
             }
             "ok"
         } catch (e: Exception) {

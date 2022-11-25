@@ -21,9 +21,9 @@ class UserService() {
         return false
     }
 
-    fun createUser(phone: String): String {
+    fun createUser(user: User): String {
         try {
-            userRepository.save(phone)
+            userRepository.save(user)
         } catch (e: Exception) {
             return e.stackTraceToString()
         }

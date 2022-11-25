@@ -22,15 +22,15 @@ class LoginController(
     @PostMapping("/login")
     fun login(phone: String): ResponseEntity<Response> {
         return if (userService.isUserExistsByPhone(phone)) {
-            ResponseEntity.ok(Response("exists"))
+            ResponseEntity.ok(Response("ok"))
         } else {
             ResponseEntity.ok(Response("not found"))
         }
     }
 
     @PostMapping("/register")
-    fun register(phone: String): ResponseEntity<Response> {
-        val isUserCreationSuccess = userService.createUser(phone = phone)
+    fun register(@RequestBody user: User): ResponseEntity<Response> {
+        val isUserCreationSuccess = userService.createUser(user)
         return if (isUserCreationSuccess == "ok") {
             ResponseEntity.ok(Response("ok"))
         } else {
