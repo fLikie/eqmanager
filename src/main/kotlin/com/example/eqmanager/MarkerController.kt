@@ -2,7 +2,6 @@ package com.example.eqmanager
 
 import com.example.eqmanager.domain.data.Response
 import com.example.eqmanager.domain.data.markers.Marker
-import com.example.eqmanager.domain.data.markers.MarkerRepository
 import com.example.eqmanager.domain.data.markers.MarkerService
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller

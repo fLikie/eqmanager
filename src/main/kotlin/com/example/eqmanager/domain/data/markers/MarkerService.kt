@@ -1,5 +1,6 @@
 package com.example.eqmanager.domain.data.markers
 
+import com.example.eqmanager.MarkerRepository
 import org.springframework.stereotype.Service
 
 @Service

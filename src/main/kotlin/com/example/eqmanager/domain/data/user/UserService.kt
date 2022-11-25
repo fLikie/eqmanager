@@ -1,5 +1,6 @@
 package com.example.eqmanager.domain.data.user
 
+import com.example.eqmanager.UserRepository
 import org.springframework.stereotype.Service
 
 

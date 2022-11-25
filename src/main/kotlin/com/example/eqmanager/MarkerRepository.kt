@@ -1,5 +1,6 @@
-package com.example.eqmanager.domain.data.markers
+package com.example.eqmanager
 
+import com.example.eqmanager.domain.data.markers.Marker
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import org.springframework.beans.factory.annotation.Autowired
