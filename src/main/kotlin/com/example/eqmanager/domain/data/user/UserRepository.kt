@@ -28,9 +28,9 @@ class UserRepository {
 
     fun save(user: User): String {
         return try {
-            dataSource?.connection.use {
-                it?.createStatement()
-                    ?.executeUpdate("INSERT INTO eqmanager.user_tbl(phone) VALUES (${user.phone})")
+            dataSource!!.connection.use {
+                it.createStatement()
+                    .executeUpdate("INSERT INTO eqmanager.user_tbl(phone) VALUES (${user.phone})")
             }
             "ok"
         } catch (e: Exception) {
@@ -40,11 +40,11 @@ class UserRepository {
 
     fun findAllUsers(): List<User> {
         return try {
-            dataSource?.connection.use {
-                val result = it?.createStatement()
-                    ?.executeQuery("SELECT * FROM eqmanager.user_tbl")
+            dataSource!!.connection.use {
+                val result = it.createStatement()
+                    .executeQuery("SELECT * FROM eqmanager.user_tbl")
                 val users = mutableListOf<User>()
-                while (result?.next() == true) {
+                while (result.next()) {
                     users.add(User(result.getString(2)))
                 }
                 users

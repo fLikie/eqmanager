@@ -26,12 +26,12 @@ class RestController() {
     @RequestMapping("/db")
     fun db(model: MutableMap<String?, Any?>): ResponseEntity<Response> {
         try {
-            dataSource?.connection.use { connection ->
-                val stmt: Statement? = connection?.createStatement()
-                stmt?.executeUpdate("INSERT INTO eqmanager.user_tbl(phone) VALUES (321)")
-                val rs: ResultSet? = stmt?.executeQuery("SELECT * FROM eqmanager.user_tbl")
+            dataSource!!.connection.use { connection ->
+                val stmt: Statement = connection.createStatement()
+                stmt.executeUpdate("INSERT INTO eqmanager.user_tbl(phone) VALUES (321)")
+                val rs: ResultSet = stmt.executeQuery("SELECT * FROM eqmanager.user_tbl")
                 val output = ArrayList<String>()
-                while (rs?.next() == true) {
+                while (rs.next() ) {
                     output.add("Read from DB: " + rs.getString(2))
                 }
                 model["records"] = output

@@ -28,11 +28,11 @@ class MarkerRepository {
 
     fun getMarkers(): List<Marker> {
         return try {
-            dataSource?.connection.use {
-                val result = it?.createStatement()
-                    ?.executeQuery("SELECT * FROM eqmanager.markers")
+            dataSource!!.connection.use {
+                val result = it.createStatement()
+                    .executeQuery("SELECT * FROM eqmanager.markers")
                 val markers = mutableListOf<Marker>()
-                while (result?.next() == true) {
+                while (result.next()) {
                     val tempMarker = Marker(
                         X_Coordinate = result.getString(2),
                         Y_Coordinate = result.getString(3),
@@ -52,9 +52,9 @@ class MarkerRepository {
 
     fun saveMarker(marker: Marker): String {
         return try {
-            dataSource?.connection.use {
-                it?.createStatement()
-                    ?.executeUpdate(
+            dataSource!!.connection.use {
+                it.createStatement()
+                    .executeUpdate(
                         "INSERT INTO eqmanager.markers(x_coordinate, y_coordinate, comments, plusCount, minusCount, approved) " +
                                 "VALUES ('${marker.X_Coordinate}', '${marker.Y_Coordinate}', '${marker.comments}', ${marker.plusCount}, ${marker.minusCount}', ${marker.approved})")
             }
