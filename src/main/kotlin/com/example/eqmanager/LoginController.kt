@@ -3,9 +3,15 @@ package com.example.eqmanager
 import com.example.eqmanager.domain.data.Response
 import com.example.eqmanager.domain.data.user.User
 import com.example.eqmanager.domain.data.user.UserService
+import com.zaxxer.hikari.HikariConfig
+import com.zaxxer.hikari.HikariDataSource
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
+import java.sql.SQLException
+import javax.sql.DataSource
 
 
 @Controller

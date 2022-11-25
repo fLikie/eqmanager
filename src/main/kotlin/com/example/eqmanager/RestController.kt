@@ -18,6 +18,23 @@ import javax.sql.DataSource
 @Controller
 class RestController() {
 
+    @Value("\${spring.datasource.url}")
+    private val dbUrl: String? = null
+
+    @Autowired
+    val dataSource: DataSource? = null
+
+    @Throws(SQLException::class)
+    fun dataSource() {
+        if (dbUrl == null || dbUrl.isEmpty()) {
+            HikariDataSource()
+        } else {
+            val config = HikariConfig()
+            config.jdbcUrl = dbUrl
+            HikariDataSource(config)
+        }
+    }
+
     @GetMapping("/ping")
     fun ping(): ResponseEntity<String> {
         return ResponseEntity.ok("pong")
@@ -43,21 +60,5 @@ class RestController() {
         }
     }
 
-    @Value("\${spring.datasource.url}")
-    private val dbUrl: String? = null
-
-    @Autowired
-    val dataSource: DataSource? = null
-
-    @Throws(SQLException::class)
-    fun dataSource() {
-        if (dbUrl == null || dbUrl.isEmpty()) {
-            HikariDataSource()
-        } else {
-            val config = HikariConfig()
-            config.jdbcUrl = dbUrl
-            HikariDataSource(config)
-        }
-    }
 
 }

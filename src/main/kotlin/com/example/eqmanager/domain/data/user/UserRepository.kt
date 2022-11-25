@@ -1,13 +1,14 @@
-package com.example.eqmanager
+package com.example.eqmanager.domain.data.user
 
-import com.example.eqmanager.domain.data.user.User
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.Controller
 import java.sql.SQLException
 import javax.sql.DataSource
 
+@Controller
 class UserRepository {
 
     @Value("\${spring.datasource.url}")
@@ -35,7 +36,7 @@ class UserRepository {
             }
             "ok"
         } catch (e: Exception) {
-            e.stackTraceToString()
+            throw e
         }
     }
 

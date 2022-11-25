@@ -1,13 +1,14 @@
 package com.example.eqmanager.domain.data.user
 
-import com.example.eqmanager.UserRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 
 @Service
 class UserService() {
 
-    private val userRepository = UserRepository()
+    @Autowired
+    lateinit var userRepository: UserRepository
 
     // Делаем проверку на существование юзера в бд
     fun isUserExistsByPhone(phone: String): Boolean {

@@ -1,13 +1,15 @@
-package com.example.eqmanager
+package com.example.eqmanager.domain.data.markers
 
 import com.example.eqmanager.domain.data.markers.Marker
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.Controller
 import java.sql.SQLException
 import javax.sql.DataSource
 
+@Controller
 class MarkerRepository {
 
     @Value("\${spring.datasource.url}")
@@ -57,7 +59,7 @@ class MarkerRepository {
                 val stmt = it.createStatement()
                 stmt.executeUpdate(
                         "INSERT INTO eqmanager.markers(x_coordinate, y_coordinate, comments, plusCount, minusCount, approved) " +
-                                "VALUES ('${marker.X_Coordinate}', '${marker.Y_Coordinate}', '${marker.comments}', ${marker.plusCount}, ${marker.minusCount}', ${marker.approved})")
+                                "VALUES ('${marker.X_Coordinate}', '${marker.Y_Coordinate}', '${marker.comments}', ${marker.plusCount}, ${marker.minusCount}, ${marker.approved})")
             }
             "ok"
         } catch (e: Exception) {
