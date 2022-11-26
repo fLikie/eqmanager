@@ -18,7 +18,7 @@ class MarkerController(
         return try {
             ResponseEntity.ok(markerService.getMarkers())
         } catch (e: Exception) {
-            ResponseEntity.ok(listOf(Marker(comments = e.stackTrace.toString())))
+            ResponseEntity.ok(listOf())
         }
     }
 
