@@ -27,4 +27,9 @@ class MarkerController(
     fun addMarker(@RequestBody marker: Marker): ResponseEntity<Response> {
         return ResponseEntity.ok(Response(markerService.saveMarker(marker)))
     }
+
+    @PostMapping("/addcomment")
+    fun addComment(@RequestBody marker: Marker): ResponseEntity<Response> {
+        return ResponseEntity.ok(Response(markerService.addComment(marker)))
+    }
 }

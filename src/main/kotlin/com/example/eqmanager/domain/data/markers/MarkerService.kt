@@ -24,4 +24,8 @@ class MarkerService() {
             e.stackTraceToString()
         }
     }
+
+    fun addComment(marker: Marker): String {
+        return markerRepository.addComment(marker)
+    }
 }

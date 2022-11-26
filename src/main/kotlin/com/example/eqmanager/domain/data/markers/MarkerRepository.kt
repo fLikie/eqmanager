@@ -66,4 +66,18 @@ class MarkerRepository {
             e.stackTraceToString()
         }
     }
+
+    fun addComment(marker: Marker): String {
+        return try {
+            dataSource!!.connection.use {
+                val stmt = it.createStatement()
+                stmt.executeUpdate(
+                    "update eqmanager.markers set comment = '{${marker.comments}}' where x_coordinate = '{${marker.X_Coordinate}}'"
+                )
+                "ok"
+            }
+        } catch (e: Exception) {
+            e.stackTraceToString()
+        }
+    }
 }
