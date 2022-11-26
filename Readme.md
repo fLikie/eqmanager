@@ -11,7 +11,9 @@ WinF - Формула победы
 Кондратьев Александр - Mobile разработчик
 Тимофеев Арсан - Back-end разработчик
 
-Kotlin Spring Boot
+Spring Boot
+Kotlin
+REST API
 PostgreSQL
 Heroku deployment
 
