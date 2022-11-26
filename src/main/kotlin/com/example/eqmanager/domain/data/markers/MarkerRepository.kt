@@ -72,7 +72,7 @@ class MarkerRepository {
             dataSource!!.connection.use {
                 val stmt = it.createStatement()
                 stmt.executeUpdate(
-                    "update eqmanager.markers set comments = '{${marker.comments}}' where x_coordinate = '{${marker.X_Coordinate}}'"
+                    "update eqmanager.markers set comments = '${marker.comments}' where x_coordinate = '${marker.X_Coordinate}'"
                 )
                 "ok"
             }
